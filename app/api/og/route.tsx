@@ -100,7 +100,6 @@ export async function GET() {
                   display: "flex",
                   flexDirection: "column",
                   paddingRight: "4px",
-                  // gap: "8px",
                   width: "50%",
                   height: "100%",
                 }} >
@@ -190,7 +189,7 @@ export async function GET() {
             </div>
           </div>
           <div style={{ width: "100%", height: "10%", display: "flex", justifyContent: "center", alignItems: "center" }} >
-            <img style={{ width: "80%" }} src="https://ipfs.filebase.io/ipfs/QmbsZoaYDuVKDB9apQSJtjLJoictqwY46273GJajoAUuzJ" />
+            <img style={{ width: "768px", height: "25px" }} src="https://ipfs.filebase.io/ipfs/QmbsZoaYDuVKDB9apQSJtjLJoictqwY46273GJajoAUuzJ" />
           </div>
         </div >
       ),
