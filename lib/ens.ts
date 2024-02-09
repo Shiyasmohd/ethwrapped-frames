@@ -7,7 +7,11 @@ export const totalEnsPointingToAddress = async (address: string) => {
     const ens_query = gql
         `
         query {
-            domains(where:{resolvedAddress:"${address}"}){
+            domains(
+                where:{
+                    resolvedAddress:"${address}"
+                }
+            ){
                 name
             }
         }
@@ -26,7 +30,11 @@ export const getAddrFromEns = async (ens: string) => {
     const ens_query = gql
         `
             query {
-                domains(where:{name:"${ens}"}){
+                domains( 
+                    where:{
+                        name:"${ens}"
+                    }
+                ){
                     resolvedAddress{
                         id
                     }

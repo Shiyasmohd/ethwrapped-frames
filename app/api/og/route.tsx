@@ -6,6 +6,7 @@ import { GraphQLClient, gql } from "graphql-request";
 import { getTotalPoapCount } from "@/lib/poap";
 import { getAddrFromEns, totalEnsPointingToAddress } from "@/lib/ens";
 import { getTotalSwaps } from "@/lib/uniswap";
+import { getHoldingERC721Nfts } from "@/lib/nfts";
 
 
 const noCacheFetch = async (url: string, options: RequestInit) =>
@@ -27,12 +28,14 @@ export async function GET() {
   const totalPoaps = await getTotalPoapCount(addr);
   const totalEns = await totalEnsPointingToAddress(addr);
   const swaps = await getTotalSwaps(addr);
+  const erc721Nfts = await getHoldingERC721Nfts(addr);
 
   console.log("Total Poaps: ", totalPoaps)
   console.log("Total ENS: ", totalEns)
   console.log("resolved address: ", addr)
   console.log("Total Swaps: ", swaps.totalSwaps)
   console.log("Total Value in USD: ", swaps.totalValueInUSD.toFixed(2))
+  console.log("Total ERC721 NFTs: ", erc721Nfts)
 
 
   if (1) {
@@ -155,8 +158,8 @@ export async function GET() {
                 <div style={{ width: "100%", height: "50%", display: "flex", gap: "4px", paddingBottom: "4px" }}>
                   <div style={{ ...BOX_WRAPPER_CSS as any, width: "231px", height: "100%", justifyContent: "center", alignItems: "center", paddingRight: "4px" }}>
                     <div style={{ ...BOX_CSS as any }} >
-                      <p style={VALUE_CSS}>5</p>
-                      <p style={TITLE_CSS}>Contracts Deployed</p>
+                      <p style={VALUE_CSS}>{erc721Nfts}</p>
+                      <p style={TITLE_CSS}>ERC721 NFTs</p>
                     </div>
                   </div>
                   <div style={{ ...BOX_WRAPPER_CSS as any, width: "231px", height: "100%", justifyContent: "center", alignItems: "center", paddingLeft: "4px" }}>

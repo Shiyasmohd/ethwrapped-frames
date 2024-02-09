@@ -4,14 +4,14 @@ export const getTotalPoapCount = async (address: string) => {
 
     const POAP_GRAPHQL_ENDPOINT = "https://api.thegraph.com/subgraphs/name/poap-xyz/poap-xdai"
 
-
     const poap_query = gql
         `
         query {
             tokens(
                 where: {
                     owner_contains_nocase: "${address}"
-                }
+                },
+                first: 500
             ) {
                 event {
                     id
