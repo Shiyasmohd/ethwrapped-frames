@@ -1,5 +1,7 @@
+import { Network } from "alchemy-sdk";
+
 // import { Alchemy, Utils, Network, BigNumber } from "alchemy-sdk";
-const { Alchemy, Utils, Network, BigNumber } = require("alchemy-sdk");
+const { Alchemy, Utils } = require('alchemy-sdk');
 
 export const shortWalletAddress = (address?: string) => {
     if (address == "N/A") return "N/A"

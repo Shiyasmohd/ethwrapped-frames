@@ -1,14 +1,21 @@
-# Crypto Punks Frames The Graph Network Example
+<div align="center" style="font-family:'Montserrat', sans-serif;">
 
-## Notes
+## <img src ="https://cryptologos.cc/logos/ethereum-eth-logo.svg?v=029" width="10"> ETH Wrapped 
+<p>⏳ Get Your Ethereum Journey Wrapped  <p>
 
-- Frames documentation: https://warpcast.notion.site/Farcaster-Frames-4bd47fe97dc74a42a48d3a234636d8c5
-  - Example app: https://github.com/farcasterxyz/fc-polls/tree/main
-  - Vercel Satori to render an image: https://github.com/vercel/satori
-  - Frame validator: https://warpcast.com/~/developers/frames
-- Hey Portals: https://reflect.site/g/yoginth/hey-portal-open-graph-spec/cd7225f128274da382f1f516e7e63f15
-- Nader's example code: https://github.com/dabit3/cross-platform-heyportals
+[![Link](https://img.shields.io/badge/Farcaster-Link-yellow)](https://google.com) <br/>
+</div>
 
-- Image dimensions: 1.91:1 -> 573:300
-  - Recommended OG image size: 1200x630 pixels
-- Image URLs need to be absolute paths
+## 🛠️ Subgraphs Used
+
+- POAP - [Link](https://thegraph.com/hosted-service/subgraph/poap-xyz/poap-xdai)
+- ENS - [Link](https://thegraph.com/hosted-service/subgraph/ensdomains/ens)
+- Uniswap V3 Substreams - [Link](https://thegraph.com/explorer/subgraphs/HUZDsRpEVP2AvzDCyzDHtdc64dyDxx8FQjzsmqSg4H3B?view=Overview&chain=arbitrum-one)
+
+
+## 📩 Contributors
+
+| Name      | Twitter |
+| ----------- | ----------- |
+| Shiyas     |  [Link](https://x.com/0xshiyasmohd)      |
+| Hashir   | [Link](https://x.com/0xhashir) |   
