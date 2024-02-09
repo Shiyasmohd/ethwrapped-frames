@@ -8,20 +8,17 @@ export const metadata: Metadata = {
   description: "Powered by The Graph",
   openGraph: {
     images: [
-      `${
-        process.env.NEXT_PUBLIC_DOMAIN
+      `${process.env.NEXT_PUBLIC_DOMAIN
       }/api/og?timestamp=${new Date().getTime()}-refresh`,
     ],
   },
   other: {
     "fc:frame": "vNext",
-    "fc:frame:image": `${
-      process.env.NEXT_PUBLIC_DOMAIN
-    }/api/og?timestamp=${new Date().getTime()}`,
+    "fc:frame:image": `${process.env.NEXT_PUBLIC_DOMAIN
+      }/api/og?timestamp=${new Date().getTime()}`,
     "fc:frame:button:1": "Refresh",
-    "fc:frame:post_url": `${
-      process.env.NEXT_PUBLIC_DOMAIN
-    }?timestamp=${new Date().getTime()}-refresh`,
+    "fc:frame:post_url": `${process.env.NEXT_PUBLIC_DOMAIN
+      }?timestamp=${new Date().getTime()}-refresh`,
   },
 };
 

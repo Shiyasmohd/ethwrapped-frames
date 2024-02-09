@@ -2,44 +2,37 @@ import { ImageResponse } from "next/og";
 export const runtime = "edge";
 export const dynamic = "force-dynamic";
 import Logo from "../../../public/logo.png";
+import { GraphQLClient, gql } from "graphql-request";
+import { getTotalPoapCount } from "@/lib/poap";
+import { getAddrFromEns, totalEnsPointingToAddress } from "@/lib/ens";
+import { getTotalSwaps } from "@/lib/uniswap";
 
-// const GRAPHQL_ENDPOINT = `https://gateway-arbitrum.network.thegraph.com/api/${process.env.THE_GRAPH_API_KEY}/subgraphs/id/2hTKKMwLsdfJm9N7gUeajkgg8sdJwky56Zpkvg8ZcyP8`;
-// const GRAPHQL_ENDPOINT = "https://api.thegraph.com/subgraphs/name/poap-xyz/poap-xdai"
 
-// const noCacheFetch = async (url: string, options: RequestInit) =>
-//   fetch(url, options);
+const noCacheFetch = async (url: string, options: RequestInit) =>
+  fetch(url, options);
 
 export async function GET() {
 
-  //   const address = "0xD8547c84ced4F10A32DC9B5dE4327e36740767C3";
-
-  //   const document = gql
-  //     `
-  //   query {
-  //     tokens(
-  //       where: {
-  //         owner_contains_nocase: "${address}"
-  //         created_gte: "1672531200"
-  //         created_lte: "1704067199"
-  //       }
-  //     ) {
-  //       created
-  //       event {
-  //         id
-  //       }
-  //     }
-  //   }
-  // `;
-
-  //   const graphQLClient = new GraphQLClient(GRAPHQL_ENDPOINT, {
-  //     fetch,
-  //     cache: "no-store",
-  //   });
-
-  //   const response: any = await graphQLClient.request(document);
-  //   console.log("Total gnosis POAPS: ", response.tokens.length);
+  let address = "vitalik.eth";
+  let addr = ""
   const portfolio = 0
 
+  if (address.includes(".eth")) {
+    addr = await getAddrFromEns(address);
+  } else {
+    addr = address;
+  }
+
+
+  const totalPoaps = await getTotalPoapCount(addr);
+  const totalEns = await totalEnsPointingToAddress(addr);
+  const swaps = await getTotalSwaps(addr);
+
+  console.log("Total Poaps: ", totalPoaps)
+  console.log("Total ENS: ", totalEns)
+  console.log("resolved address: ", addr)
+  console.log("Total Swaps: ", swaps.totalSwaps)
+  console.log("Total Value in USD: ", swaps.totalValueInUSD.toFixed(2))
 
 
   if (1) {
@@ -105,14 +98,14 @@ export async function GET() {
                 }} >
                   <div style={{ ...BOX_WRAPPER_CSS as any, width: "100%", height: "113px", borderRadius: "8px", gap: "8px", display: "flex", justifyContent: "center", alignItems: "center" }}>
                     <div style={{ ...BOX_CSS as any }} >
-                      <p style={VALUE_CSS}>17</p>
-                      <p style={TITLE_CSS}>Transactions</p>
+                      <p style={VALUE_CSS}>{swaps.totalSwaps}</p>
+                      <p style={TITLE_CSS}>Swaps on Uniswap</p>
                     </div>
                   </div>
                   <div style={{ ...BOX_CSS as any, height: "114px", borderRadius: "8px", width: "100%", marginTop: "4px" }} >
                     <div style={BOX_CSS as any} >
-                      <p style={VALUE_CSS}>0.0270 $ETH</p>
-                      <p style={TITLE_CSS}>Total txn fee paid</p>
+                      <p style={VALUE_CSS}>{swaps.totalValueInUSD.toFixed(2)}</p>
+                      <p style={TITLE_CSS}>Total volume swapped in USD</p>
                     </div>
                   </div>
                 </div>
@@ -148,8 +141,8 @@ export async function GET() {
             }}>
               <div style={{ ...BOX_WRAPPER_CSS as any, paddingBottom: "4px", width: "100%", height: "233px", display: "flex", justifyContent: "center", alignItems: "center" }}>
                 <div style={BOX_CSS as any}>
-                  <p style={VALUE_CSS} >3</p>
-                  <p style={TITLE_CSS}>Total NFTs Minted</p>
+                  <p style={VALUE_CSS} >{totalEns}</p>
+                  <p style={TITLE_CSS}>Total ENS pointed</p>
                 </div>
               </div>
               <div style={{
@@ -168,7 +161,7 @@ export async function GET() {
                   </div>
                   <div style={{ ...BOX_WRAPPER_CSS as any, width: "231px", height: "100%", justifyContent: "center", alignItems: "center", paddingLeft: "4px" }}>
                     <div style={BOX_CSS as any}>
-                      <p style={VALUE_CSS}>11</p>
+                      <p style={VALUE_CSS}>{totalPoaps}</p>
                       <p style={TITLE_CSS}>POAPs Minted</p>
                     </div>
                   </div>
