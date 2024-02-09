@@ -7,7 +7,7 @@ import { getTotalPoapCount } from "@/lib/poap";
 import { getAddrFromEns, totalEnsPointingToAddress } from "@/lib/ens";
 import { getTotalSwaps } from "@/lib/uniswap";
 import { getHoldingERC721Nfts } from "@/lib/nfts";
-import { shortWalletAddress } from "@/lib/helper";
+import { calculatePercentageChange, getBalanceByTimestamp, shortWalletAddress } from "@/lib/helper";
 import { getTransactions } from "./fetchTransactions";
 import { processTransactions } from "./processTransaction";
 
@@ -19,9 +19,8 @@ export async function GET() {
 
   const etherscanApiKey = process.env.ETHERSCAN_API_KEY!
 
-  let address = "vitalik.eth";
+  let address = "shiyasmohd.eth";
   let addr = ""
-  const portfolio = 0
 
   if (address.includes(".eth")) {
     addr = await getAddrFromEns(address);
@@ -38,19 +37,43 @@ export async function GET() {
   };
 
 
-  const totalPoaps = await getTotalPoapCount(addr);
-  console.log("Total Poaps: ", totalPoaps)
-  const totalEns = await totalEnsPointingToAddress(addr);
-  console.log("Total ENS: ", totalEns)
-  const swaps = await getTotalSwaps(addr);
-  console.log("Total Swaps: ", swaps.totalSwaps)
-  console.log("Total Value in USD: ", swaps.totalValueInUSD.toFixed(2))
-  const erc721Nfts = await getHoldingERC721Nfts(addr);
-  console.log("Total ERC721 NFTs: ", erc721Nfts)
+  let portfolio = 0
+  // const totalPoaps = await getTotalPoapCount(addr);
+  // console.log("Total Poaps: ", totalPoaps)
+  // const totalEns = await totalEnsPointingToAddress(addr);
+  // console.log("Total ENS: ", totalEns)
+  // const swaps = await getTotalSwaps(addr);
+  // console.log("Total Swaps: ", swaps.totalSwaps)
+  // console.log("Total Value in USD: ", swaps.totalValueInUSD.toFixed(2))
+  // const erc721Nfts = await getHoldingERC721Nfts(addr);
+  // console.log("Total ERC721 NFTs: ", erc721Nfts)
 
-  const txns = await getTransactions(addr, params, etherscanApiKey);
-  console.log(txns.length, "transactions fetched")
-  const txnProcessedData = processTransactions(addr, txns);
+  const totalPoaps = 0
+  const totalEns = 0
+  const swaps = {
+    totalSwaps: 0,
+    totalValueInUSD: 0
+  }
+  const erc721Nfts = 0
+
+  // const txns = await getTransactions(addr, params, etherscanApiKey);
+  // console.log(txns.length, "transactions fetched")
+  // const txnProcessedData = processTransactions(addr, txns);
+
+  const txnProcessedData = {
+    mostTransactedAddress: 0,
+    mostTransactedCount: 0,
+    totalEthReceived: 0,
+    totalEthSent: 0,
+    highestTransactionAddress: "0",
+  }
+
+  // let startBal = await getBalanceByTimestamp(addr, 0)
+  // let endBal = await getBalanceByTimestamp(addr, 1)
+
+  // if (startBal != endBal) {
+  //   portfolio = calculatePercentageChange(startBal, endBal)
+  // }
 
   console.log(txnProcessedData)
 
