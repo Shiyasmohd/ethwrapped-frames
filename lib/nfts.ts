@@ -23,5 +23,6 @@ export const getHoldingERC721Nfts = async (address: string) => {
         cache: "no-store",
     });
     const data: any = await graphQLClient.request(query);
+    if (data.accounts.length == 0) return 0
     return data.accounts[0].tokens.length;
 }

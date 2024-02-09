@@ -7,9 +7,10 @@ import { getTotalPoapCount } from "@/lib/poap";
 import { getAddrFromEns, totalEnsPointingToAddress } from "@/lib/ens";
 import { getTotalSwaps } from "@/lib/uniswap";
 import { getHoldingERC721Nfts } from "@/lib/nfts";
-import { calculatePercentageChange, getBalanceByTimestamp, shortWalletAddress } from "@/lib/helper";
+import { shortWalletAddress } from "@/lib/helper";
 import { getTransactions } from "./fetchTransactions";
 import { processTransactions } from "./processTransaction";
+import { getAddressByLensHandle, getHeyFollowers } from "@/lib/lens";
 
 
 const noCacheFetch = async (url: string, options: RequestInit) =>
@@ -19,13 +20,16 @@ export async function GET() {
 
   const etherscanApiKey = process.env.ETHERSCAN_API_KEY!
 
-  let address = "shiyasmohd.eth";
+  let input = "hashir.lens";
   let addr = ""
 
-  if (address.includes(".eth")) {
-    addr = await getAddrFromEns(address);
+  if (input.endsWith(".eth")) {
+    addr = await getAddrFromEns(input);
+  }
+  else if (input.endsWith(".lens")) {
+    addr = await getAddressByLensHandle(input);
   } else {
-    addr = address.toLowerCase();
+    addr = input.toLowerCase();
   }
   console.log("resolved address: ", addr)
   const params = {
@@ -37,7 +41,6 @@ export async function GET() {
   };
 
 
-  let portfolio = 0
   const totalPoaps = await getTotalPoapCount(addr);
   console.log("Total Poaps: ", totalPoaps)
   const totalEns = await totalEnsPointingToAddress(addr);
@@ -47,6 +50,7 @@ export async function GET() {
   console.log("Total Value in USD: ", swaps.totalValueInUSD.toFixed(2))
   const erc721Nfts = await getHoldingERC721Nfts(addr);
   console.log("Total ERC721 NFTs: ", erc721Nfts)
+  const heyFollowers = await getHeyFollowers(addr)
 
 
   const txns = await getTransactions(addr, params, etherscanApiKey);
@@ -55,12 +59,6 @@ export async function GET() {
   console.log("Processed Transaction Data: ", txnProcessedData)
 
 
-  let startBal = await getBalanceByTimestamp(addr, 0)
-  let endBal = await getBalanceByTimestamp(addr, 1)
-
-  if (startBal != endBal) {
-    portfolio = calculatePercentageChange(startBal, endBal)
-  }
 
   console.log(txnProcessedData)
 
@@ -76,7 +74,6 @@ export async function GET() {
       fontSize: "0.75rem",
       display: "flex",
       margin: 0,
-      // color: "#9ca3af"
       color: "#ffffff"
     }
     const BOX_WRAPPER_CSS = { display: "flex", flexDirection: "column", position: "relative", borderRadius: "0.75rem", background: "#18181b" }
@@ -153,7 +150,7 @@ export async function GET() {
               <div style={{ ...BOX_WRAPPER_CSS as any, paddingTop: "4px", display: "flex", justifyContent: "center", alignItems: "center", width: "100%", height: "50%" }}>
                 <div style={BOX_CSS as any} >
                   <p style={VALUE_CSS}>
-                    {shortWalletAddress(txnProcessedData.highestTransactionAddress)}
+                    {shortWalletAddress(txnProcessedData.mostTransactedAddress)}
                   </p>
                   <p style={TITLE_CSS}>Address you most interacted with in 2023</p>
                 </div>
@@ -196,13 +193,9 @@ export async function GET() {
                 </div>
                 <div style={{ ...BOX_WRAPPER_CSS as any, justifyContent: "center", height: "118px", alignItems: "center", paddingTop: "4px" }}>
                   <div style={{ ...BOX_CSS as any }}>
-                    <p style={VALUE_CSS}>{portfolio == 0 ? "" : portfolio > 0 ? "+" : ""}{portfolio.toFixed(2)} %</p>
+                    <p style={VALUE_CSS}>{heyFollowers}</p>
                     <p style={TITLE_CSS}>
-                      {
-                        portfolio == 0 ? "No Change in Portfolio"
-                          : portfolio > 0 ? "Portfolio Increased by"
-                            : "Portfolio Decreased by"
-                      }
+                      Followers on Hey (fomerly Lenster)
                     </p>
                   </div>
                 </div>

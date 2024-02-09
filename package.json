@@ -9,7 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "alchemy-sdk": "^3.1.0",
     "axios": "^1.6.7",
     "ethers": "^5.7.2",
     "graphql": "^16.8.1",

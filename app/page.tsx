@@ -1,5 +1,4 @@
 "use client"
-import { getBalanceByTimestamp } from "@/lib/helper";
 import { Metadata } from "next";
 import Link from "next/link";
 
@@ -27,14 +26,6 @@ export const dynamic = "force-dynamic";
 
 export default function Home() {
 
-  const test = async () => {
-    let addr = "0xd8547c84ced4f10a32dc9b5de4327e36740767c3";
-
-    let startBal = await getBalanceByTimestamp(addr, 0)
-    let endBal = await getBalanceByTimestamp(addr, 1)
-    console.log(startBal, endBal)
-  }
-
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="z-10 max-w-5xl w-full items-center justify-between ">
@@ -53,9 +44,7 @@ export default function Home() {
           </Link>
         </p>
       </div>
-      <button onClick={test}>
-        test
-      </button>
+
     </main>
   );
 }
