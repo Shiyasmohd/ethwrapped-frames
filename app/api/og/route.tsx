@@ -7,12 +7,17 @@ import { getTotalPoapCount } from "@/lib/poap";
 import { getAddrFromEns, totalEnsPointingToAddress } from "@/lib/ens";
 import { getTotalSwaps } from "@/lib/uniswap";
 import { getHoldingERC721Nfts } from "@/lib/nfts";
+import { shortWalletAddress } from "@/lib/helper";
+import { getTransactions } from "./fetchTransactions";
+import { processTransactions } from "./processTransaction";
 
 
 const noCacheFetch = async (url: string, options: RequestInit) =>
   fetch(url, options);
 
 export async function GET() {
+
+  const etherscanApiKey = process.env.ETHERSCAN_API_KEY!
 
   let address = "vitalik.eth";
   let addr = ""
@@ -21,22 +26,33 @@ export async function GET() {
   if (address.includes(".eth")) {
     addr = await getAddrFromEns(address);
   } else {
-    addr = address;
+    addr = address.toLowerCase();
   }
+  console.log("resolved address: ", addr)
+  const params = {
+    startBlock: 16308214,
+    endBlock: 18908893,
+    page: 0,
+    offset: 0,
+    sort: "asc",
+  };
 
 
   const totalPoaps = await getTotalPoapCount(addr);
-  const totalEns = await totalEnsPointingToAddress(addr);
-  const swaps = await getTotalSwaps(addr);
-  const erc721Nfts = await getHoldingERC721Nfts(addr);
-
   console.log("Total Poaps: ", totalPoaps)
+  const totalEns = await totalEnsPointingToAddress(addr);
   console.log("Total ENS: ", totalEns)
-  console.log("resolved address: ", addr)
+  const swaps = await getTotalSwaps(addr);
   console.log("Total Swaps: ", swaps.totalSwaps)
   console.log("Total Value in USD: ", swaps.totalValueInUSD.toFixed(2))
+  const erc721Nfts = await getHoldingERC721Nfts(addr);
   console.log("Total ERC721 NFTs: ", erc721Nfts)
 
+  const txns = await getTransactions(addr, params, etherscanApiKey);
+  console.log(txns.length, "transactions fetched")
+  const txnProcessedData = processTransactions(addr, txns);
+
+  console.log(txnProcessedData)
 
   if (1) {
     const VALUE_CSS = {
@@ -65,7 +81,6 @@ export async function GET() {
       flexDirection: "column",
     }
 
-    console.log("Working")
 
     return new ImageResponse(
       (
@@ -115,12 +130,12 @@ export async function GET() {
                 <div style={{ ...BOX_WRAPPER_CSS as any, width: "50%", paddingLeft: "4px", paddingBottom: "4px" }}>
                   <div style={{ ...BOX_WRAPPER_CSS as any, width: "100%", height: "100%", display: "flex", justifyContent: "center", alignItems: "center", gap: "16px" }}>
                     <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-                      <p style={VALUE_CSS}>0.0250</p>
-                      <p style={TITLE_CSS}>ETH Sent</p>
+                      <p style={VALUE_CSS}>{txnProcessedData.totalEthSent.toFixed(2)}</p>
+                      <p style={TITLE_CSS}>ETH Sent in 2023</p>
                     </div>
                     <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-                      <p style={VALUE_CSS}>0.0440</p>
-                      <p style={TITLE_CSS}>ETH Received</p>
+                      <p style={VALUE_CSS}>{txnProcessedData.totalEthReceived.toFixed(2)}</p>
+                      <p style={TITLE_CSS}>ETH Received in 2023</p>
                     </div>
                   </div>
                 </div>
@@ -128,9 +143,9 @@ export async function GET() {
               <div style={{ ...BOX_WRAPPER_CSS as any, paddingTop: "4px", display: "flex", justifyContent: "center", alignItems: "center", width: "100%", height: "50%" }}>
                 <div style={BOX_CSS as any} >
                   <p style={VALUE_CSS}>
-                    0x06C...0c10B
+                    {shortWalletAddress(txnProcessedData.highestTransactionAddress)}
                   </p>
-                  <p style={TITLE_CSS}>Address you most interacted with</p>
+                  <p style={TITLE_CSS}>Address you most interacted with in 2023</p>
                 </div>
               </div>
             </div>

@@ -49,5 +49,5 @@ export const getAddrFromEns = async (ens: string) => {
 
     const ensData: any = await graphQLClient.request(ens_query);
     if (ensData.domains.length === 0) return null
-    return ensData.domains[0].resolvedAddress.id;
+    return ensData.domains[0].resolvedAddress.id.toLowerCase();
 }

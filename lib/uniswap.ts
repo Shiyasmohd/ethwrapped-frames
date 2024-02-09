@@ -7,7 +7,7 @@ export const getTotalSwaps = async (address: string) => {
         query {
             swaps(
                 where: {
-                    to: "${address}"
+                  recipient: "${address}"
                 }
             ){
               recipient
