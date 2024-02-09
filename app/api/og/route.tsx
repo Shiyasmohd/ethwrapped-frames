@@ -3,14 +3,14 @@ export const runtime = "edge";
 export const dynamic = "force-dynamic";
 import Logo from "../../../public/logo.png";
 import { GraphQLClient, gql } from "graphql-request";
-import { getTotalPoapCount } from "@/lib/poap";
-import { getAddrFromEns, totalEnsPointingToAddress } from "@/lib/ens";
-import { getTotalSwaps } from "@/lib/uniswap";
-import { getHoldingERC721Nfts } from "@/lib/nfts";
+import { getTotalPoapCount } from "@/lib/subgraph-functions/poap";
+import { getAddrFromEns, totalEnsPointingToAddress } from "@/lib/subgraph-functions/ens";
+import { getTotalSwaps } from "@/lib/subgraph-functions/uniswap";
+import { getHoldingERC721Nfts } from "@/lib/subgraph-functions/nfts";
 import { shortWalletAddress } from "@/lib/helper";
 import { getTransactions } from "./fetchTransactions";
 import { processTransactions } from "./processTransaction";
-import { getAddressByLensHandle, getHeyFollowers } from "@/lib/lens";
+import { getAddressByLensHandle, getHeyFollowers } from "@/lib/subgraph-functions/lens";
 
 
 const noCacheFetch = async (url: string, options: RequestInit) =>
@@ -20,7 +20,7 @@ export async function GET() {
 
   const etherscanApiKey = process.env.ETHERSCAN_API_KEY!
 
-  let input = "hashir.lens";
+  let input = "nader.lens";
   let addr = ""
 
   if (input.endsWith(".eth")) {
@@ -51,7 +51,7 @@ export async function GET() {
   const erc721Nfts = await getHoldingERC721Nfts(addr);
   console.log("Total ERC721 NFTs: ", erc721Nfts)
   const heyFollowers = await getHeyFollowers(addr)
-
+  console.log("Hey followers: ", heyFollowers)
 
   const txns = await getTransactions(addr, params, etherscanApiKey);
   console.log(txns.length, "transactions fetched")
@@ -195,7 +195,7 @@ export async function GET() {
                   <div style={{ ...BOX_CSS as any }}>
                     <p style={VALUE_CSS}>{heyFollowers}</p>
                     <p style={TITLE_CSS}>
-                      Followers on Hey (fomerly Lenster)
+                      Followers on Hey (formerly Lenster)
                     </p>
                   </div>
                 </div>
