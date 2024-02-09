@@ -8,7 +8,7 @@
 
 ## 📝 Project Description 
 
-This project is a **Spotify Wrapped** version your **Ethereum** journey. 
+This project is a **Spotify Wrapped** version your **Ethereum** journey. Input your ENS / Lens handle / EVM address and wrap your version. ✨
 
 ## 🛠️ Subgraphs Used
 
