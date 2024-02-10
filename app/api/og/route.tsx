@@ -62,7 +62,8 @@ export async function GET(req: NextRequest) {
   const txnProcessedData = processTransactions(addr, txns);
   console.log("Processed Transaction Data: ", txnProcessedData);
 
-  console.log(txnProcessedData);
+
+
 
   if (1) {
     const VALUE_CSS = {
@@ -112,7 +113,7 @@ export async function GET(req: NextRequest) {
               display: "flex",
               borderRadius: "0.5rem",
               width: "100%",
-              height: "90%",
+              height: "100%",
               backgroundColor: "#000000",
               color: "#ffffff",
             }}
@@ -163,9 +164,10 @@ export async function GET(req: NextRequest) {
                   <div
                     style={{
                       ...(BOX_CSS as any),
-                      height: "114px",
+                      height: "140px",
                       borderRadius: "8px",
                       width: "100%",
+
                       marginTop: "4px",
                     }}
                   >
@@ -259,7 +261,7 @@ export async function GET(req: NextRequest) {
                   ...(BOX_WRAPPER_CSS as any),
                   paddingBottom: "4px",
                   width: "100%",
-                  height: "233px",
+                  height: "258px",
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center",
@@ -323,7 +325,7 @@ export async function GET(req: NextRequest) {
                   style={{
                     ...(BOX_WRAPPER_CSS as any),
                     justifyContent: "center",
-                    height: "118px",
+                    height: "133px",
                     alignItems: "center",
                     paddingTop: "4px",
                   }}
@@ -336,9 +338,9 @@ export async function GET(req: NextRequest) {
               </div>
             </div>
           </div>
-          <div style={{ width: "100%", height: "10%", display: "flex", justifyContent: "center", alignItems: "center" }} >
+          {/* <div style={{ width: "100%", height: "10%", display: "flex", justifyContent: "center", alignItems: "center" }} >
             <img style={{ height: "25px" }} src="https://ipfs.filebase.io/ipfs/QmfB9bfFcd2PHQiAxaD9F5GMmYBpYNcdSXXREUuny79M2F" />
-          </div>
+          </div> */}
         </div>
       ),
       {
