@@ -46,6 +46,7 @@ export const getHeyFollowers = async (address: string) => {
       cache: "no-store",
     });
     const lensData: any = await graphQLClient.request(poap_query);
+    if (lensData.account == null) break;
     totalFollowers += lensData.account.following.length;
   }
 
