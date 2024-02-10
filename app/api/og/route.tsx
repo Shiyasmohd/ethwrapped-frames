@@ -336,9 +336,9 @@ export async function GET(req: NextRequest) {
               </div>
             </div>
           </div>
-          {/* <div style={{ width: "100%", height: "10%", display: "flex", justifyContent: "center", alignItems: "center" }} >
-            <img style={{ width: "768px", height: "25px" }} src="https://ipfs.filebase.io/ipfs/QmbsZoaYDuVKDB9apQSJtjLJoictqwY46273GJajoAUuzJ" />
-          </div> */}
+          <div style={{ width: "100%", height: "10%", display: "flex", justifyContent: "center", alignItems: "center" }} >
+            <img style={{ height: "25px" }} src="https://ipfs.filebase.io/ipfs/QmfB9bfFcd2PHQiAxaD9F5GMmYBpYNcdSXXREUuny79M2F" />
+          </div>
         </div>
       ),
       {

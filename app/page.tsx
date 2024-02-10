@@ -4,8 +4,8 @@ import Link from "next/link";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Farcaster CryptoPunks The Graph Frame",
-  description: "Powered by The Graph",
+  title: "ETH Wrapped | Farcaster Frames Edition",
+  description: "Built by @XDev",
   openGraph: {
     images: [
       "https://ipfs.filebase.io/ipfs/QmeiXGQKgrU4xbRLYGgHucjLegMP2vjU8KG1KSJwJSY7nN",
@@ -33,7 +33,7 @@ export default function Home() {
         <p className="mb-10">
           Source code:{" "}
           <Link
-            href={`https://github.com/schmidsi/cryptopunks-frames`}
+            href={`https://github.com/shiyasmohd/ethwrapped-frames`}
             className="underline"
           >
             github.com/schmidsi/cryptopunks-frames
