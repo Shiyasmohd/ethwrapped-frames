@@ -1,8 +1,13 @@
 export const dynamic = "force-dynamic";
 
-export async function POST(request: Request) {
-  const imageUrl = "TODO";
+export async function POST(req: Request) {
+  console.log('inside refresh')
 
+  const {
+    untrustedData: { inputText, fid },
+    trustedData: { messageBytes },
+  } = await req.json();
+  const imageURL = `${process.env.NEXT_PUBLIC_BASE_URL}/api/og?address=${inputText}`;
   return new Response(
     `
         <!DOCTYPE html>
@@ -10,13 +15,10 @@ export async function POST(request: Request) {
         <head>
             <title>Vote Recorded</title>
             <meta property="og:title" content="Vote Recorded">
-            <meta property="og:image" content="${imageUrl}">
+            <meta property="og:image" content="${imageURL}">
             <meta name="fc:frame" content="vNext">
-            <meta name="fc:frame:image" content="${imageUrl}">
-            <meta name="fc:frame:post_url" content="${
-              process.env.NEXT_PUBLIC_DOMAIN
-            }/api/og?timestamp=${new Date().getTime()}-refresh">
-            <meta name="fc:frame:button:1" content="Refresh">
+            <meta name="fc:frame:image" content="${imageURL}">
+           
         </head>
         <body>
         </body>
