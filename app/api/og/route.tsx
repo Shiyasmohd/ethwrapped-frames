@@ -23,10 +23,8 @@ const noCacheFetch = async (url: string, options: RequestInit) =>
   fetch(url, options);
 
 export async function GET(req: NextRequest) {
-  console.log("here");
   const searchParams = req.nextUrl.searchParams;
   const inputText = searchParams.get("address") ?? "";
-  console.log(inputText);
   const etherscanApiKey = process.env.ETHERSCAN_API_KEY!;
 
   let addr = "";

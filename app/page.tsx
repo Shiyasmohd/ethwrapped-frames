@@ -8,13 +8,14 @@ export const metadata: Metadata = {
   description: "Powered by The Graph",
   openGraph: {
     images: [
-      "https://picsum.photos/seed/frames.js/1146/600",
+      "https://ipfs.filebase.io/ipfs/QmeiXGQKgrU4xbRLYGgHucjLegMP2vjU8KG1KSJwJSY7nN",
     ],
   },
   other: {
     "fc:frame": "vNext",
-    "fc:frame:image": "https://picsum.photos/seed/frames.js/1146/600",
-    "fc:frame:input:text": "Address",
+    "fc:frame:image":
+      "https://ipfs.filebase.io/ipfs/QmeiXGQKgrU4xbRLYGgHucjLegMP2vjU8KG1KSJwJSY7nN",
+    "fc:frame:input:text": "ENS or Lens or Address",
     "fc:frame:button:1": "Wrap",
     "fc:frame:post_url": `${process.env.NEXT_PUBLIC_BASE_URL}/api/refresh`,
   },

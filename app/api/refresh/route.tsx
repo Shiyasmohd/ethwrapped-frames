@@ -1,8 +1,6 @@
 export const dynamic = "force-dynamic";
 
 export async function POST(req: Request) {
-  console.log('inside refresh')
-
   const {
     untrustedData: { inputText, fid },
     trustedData: { messageBytes },
