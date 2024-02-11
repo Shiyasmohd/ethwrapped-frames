@@ -15,7 +15,7 @@ import { getTransactions } from "./fetchTransactions";
 import { processTransactions } from "./processTransaction";
 import {
   getAddressByLensHandle,
-  getHeyFollowers,
+  getHeyPosts,
 } from "@/lib/subgraph-functions/lens";
 import { NextRequest } from "next/server";
 
@@ -54,8 +54,8 @@ export async function GET(req: NextRequest) {
   console.log("Total Value in USD: ", swaps.totalValueInUSD.toFixed(2));
   const erc721Nfts = await getHoldingERC721Nfts(addr);
   console.log("Total ERC721 NFTs: ", erc721Nfts);
-  const heyFollowers = await getHeyFollowers(addr);
-  console.log("Hey followers: ", heyFollowers);
+  const heyFollowers = await getHeyPosts(addr);
+  console.log("Hey Posts: ", heyFollowers);
 
   const txns = await getTransactions(addr, params, etherscanApiKey);
   console.log(txns.length, "transactions fetched");
@@ -332,7 +332,7 @@ export async function GET(req: NextRequest) {
                 >
                   <div style={{ ...(BOX_CSS as any) }}>
                     <p style={VALUE_CSS}>{heyFollowers}</p>
-                    <p style={TITLE_CSS}>Followers on Hey (formerly Lenster)</p>
+                    <p style={TITLE_CSS}>Posts on Hey (formerly Lenster)</p>
                   </div>
                 </div>
               </div>

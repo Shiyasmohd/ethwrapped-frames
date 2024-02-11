@@ -23,33 +23,29 @@ export const getAddressByLensHandle = async (handle: string) => {
   return lensData.profiles[0]._to.toLowerCase();
 }
 
-export const getHeyFollowers = async (address: string) => {
-  const LENS_GRAPHQL_ENDPOINT = "https://api.thegraph.com/subgraphs/name/maui-r/lens-protocol-account-profile"
+export const getHeyPosts = async (address: string) => {
 
-  let totalFollowers = 0;
+  const LENS_GRAPHQL_ENDPOINT = "https://api.thegraph.com/subgraphs/name/schmidsi/anudit-lens"
 
-  for (let i = 0; totalFollowers == i * 1000 && totalFollowers <= 5000; i++) {
-    const poap_query = gql
-      `
-          query {
-              account(id: "${address}") {
-                following(skip: ${totalFollowers},first: 1000) {
-                  profile {
-                    id
-                  }
-                }
+  const poap_query = gql
+    `
+        query {
+          posts(
+            where: {
+              profileId_: {
+                owner: "${address}"
               }
             }
-      `;
-    let graphQLClient = new GraphQLClient(LENS_GRAPHQL_ENDPOINT, {
-      fetch,
-      cache: "no-store",
-    });
-    const lensData: any = await graphQLClient.request(poap_query);
-    if (lensData.account == null) break;
-    totalFollowers += lensData.account.following.length;
-  }
+          ) {
+            id
+          }
+        }
+    `;
+  let graphQLClient = new GraphQLClient(LENS_GRAPHQL_ENDPOINT, {
+    fetch,
+    cache: "no-store",
+  });
+  const lensData: any = await graphQLClient.request(poap_query);
 
-
-  return totalFollowers
+  return lensData.posts.length
 }

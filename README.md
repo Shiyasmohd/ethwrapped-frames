@@ -16,7 +16,7 @@ This project is a **Spotify Wrapped** version your **Ethereum** journey. Input y
 - ENS - [Link](https://thegraph.com/hosted-service/subgraph/ensdomains/ens)
 - Uniswap V3 Substreams - [Link](https://thegraph.com/explorer/subgraphs/HUZDsRpEVP2AvzDCyzDHtdc64dyDxx8FQjzsmqSg4H3B?view=Overview&chain=arbitrum-one)
 - ERC721 NFTs - [Link](https://thegraph.com/explorer/subgraphs/CBf1FtUKFnipwKVm36mHyeMtkuhjmh4KHzY3uWNNq5ow?view=Playground&chain=arbitrum-one)
-- Hey (formerly Lenster) Followers - [Link](https://thegraph.com/hosted-service/subgraph/maui-r/lens-protocol-account-profile)
+- Hey (formerly Lenster) Posts - [Link](https://api.thegraph.com/subgraphs/name/schmidsi/anudit-lens)
 - Lens - [Link](https://thegraph.com/hosted-service/subgraph/gundamdweeb/lens-protocol)
 
 
