@@ -1,5 +1,6 @@
 import { GraphQLClient, gql } from "graphql-request";
 
+// Get wallet address by Lens handle
 export const getAddressByLensHandle = async (handle: string) => {
   const LENS_GRAPHQL_ENDPOINT = "https://api.thegraph.com/subgraphs/name/gundamdweeb/lens-protocol"
 
@@ -23,6 +24,7 @@ export const getAddressByLensHandle = async (handle: string) => {
   return lensData.profiles[0]._to.toLowerCase();
 }
 
+// Get the total number of posts on Hey (formerly Lenster) by an address
 export const getHeyPosts = async (address: string) => {
 
   const LENS_GRAPHQL_ENDPOINT = "https://api.thegraph.com/subgraphs/name/schmidsi/anudit-lens"

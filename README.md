@@ -8,7 +8,10 @@
 
 ## 📝 Project Description 
 
-This project is a **Spotify Wrapped** version your **Ethereum** journey. Input your ENS / Lens handle / EVM address and wrap your version. ✨
+This project is a **Spotify Wrapped** version your **Ethereum** journey. Input your **ENS** / **Lens handle** / **EVM Address** and wrap your version. ✨
+
+All query functions are defined in [`lib/subgraph-functions`](https://github.com/Shiyasmohd/ethwrapped-frames/tree/main/lib/subgraph-functions)
+
 
 ## 🛠️ Subgraphs Used
 

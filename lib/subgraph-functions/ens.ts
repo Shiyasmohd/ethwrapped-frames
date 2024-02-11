@@ -2,6 +2,8 @@ import { GraphQLClient, gql } from "graphql-request";
 
 const ENS_GRAPHQL_ENDPOINT = "https://api.thegraph.com/subgraphs/name/ensdomains/ens"
 
+
+// Get the total number of ENS pointing to an address
 export const totalEnsPointingToAddress = async (address: string) => {
 
     const ens_query = gql
@@ -26,6 +28,8 @@ export const totalEnsPointingToAddress = async (address: string) => {
     return ensData.domains.length;
 }
 
+
+// Get the address from an ENS name
 export const getAddrFromEns = async (ens: string) => {
     const ens_query = gql
         `

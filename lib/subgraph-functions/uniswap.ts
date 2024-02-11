@@ -1,5 +1,6 @@
 import { GraphQLClient, gql } from "graphql-request";
 
+// Get the total number of swaps by an address
 export const getTotalSwaps = async (address: string) => {
   const SWAPS_GRAPHQL_ENDPOINT = `https://gateway-arbitrum.network.thegraph.com/api/${process.env.GRAPH_API_KEY}/subgraphs/id/HUZDsRpEVP2AvzDCyzDHtdc64dyDxx8FQjzsmqSg4H3B`;
   const swaps_query = gql
