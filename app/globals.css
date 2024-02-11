@@ -18,16 +18,31 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
+  background: linear-gradient(to bottom,
       transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+      rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+.txt-gradient {
+  /* background: -webkit-linear-gradient(#eee, #333);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; */
+  background: linear-gradient(45deg, cyan, yellow);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.txt-gradient-2 {
+  /* background: -webkit-linear-gradient(#eee, #333);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; */
+  background: radial-gradient(circle at center center, #12C2E9 0%, #c471ed 50%, #f64f59 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
