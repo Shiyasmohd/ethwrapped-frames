@@ -12,7 +12,7 @@ export const getHoldingERC721Nfts = async (address: string) => {
                 where: {
                     id: "${address}"
                 },
-                first: 500
+                first: 1000
             ){
                 tokens{
                     id

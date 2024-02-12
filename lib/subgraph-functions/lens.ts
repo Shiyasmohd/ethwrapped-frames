@@ -37,7 +37,8 @@ export const getHeyPosts = async (address: string) => {
               profileId_: {
                 owner: "${address}"
               }
-            }
+            },
+            first: 1000
           ) {
             id
           }
