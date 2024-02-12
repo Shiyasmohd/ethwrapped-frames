@@ -5,16 +5,16 @@ export async function POST(req: Request) {
     untrustedData: { inputText, fid },
     trustedData: { messageBytes },
   } = await req.json();
-  const imageURL = `${process.env.NEXT_PUBLIC_BASE_URL}/api/og?address=${inputText}`;
+  const imageURL = `${process.env.NEXT_PUBLIC_BASE_URL}/api/image?address=${inputText}`;
   return new Response(
     `
         <!DOCTYPE html>
         <html>
         <head>
-            <title>Vote Recorded</title>
-            <meta property="og:title" content="Vote Recorded">
+            <title>ETH Wrapped | Farcaster Frames Edition</title>
+            <meta property="og:title" content="ETH Wrapped">
             <meta property="og:image" content="${imageURL}">
-            <meta name="fc:frame" content="vNext">
+            <meta name="fc:frame" content="ETH Wrapped">
             <meta name="fc:frame:image" content="${imageURL}">
            
         </head>

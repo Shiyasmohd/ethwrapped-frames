@@ -18,7 +18,7 @@ export const metadata: Metadata = {
       "https://opengraph.b-cdn.net/production/documents/95546111-21b8-4ee5-a228-7093cec6e7b3.png?token=wi3Kf7Qfb__3otpmdX5gF1C5Z0FBpKPsOfA6-3Vbed4&height=487&width=1200&expires=33243713089",
     "fc:frame:input:text": "ENS or Lens or Address",
     "fc:frame:button:1": "Wrap",
-    "fc:frame:post_url": `${process.env.NEXT_PUBLIC_BASE_URL}/api/refresh`,
+    "fc:frame:post_url": `${process.env.NEXT_PUBLIC_BASE_URL}/api/wrap`,
   },
 };
 
@@ -27,10 +27,14 @@ export default function Home() {
     <div className="flex px-4 justify-center flex-col gap-2 items-center h-[calc(100vh-150px)] pt-[100px] relative font-aviano">
       <div className="left-[-25%]  absolute h-72 w-72 bg-[#0a69da] rounded-full blur-[5rem] opacity-30 md:left-0" />
       <div className="hidden top-[60vh] right-0 absolute h-72 w-72 bg-[#0a69da] rounded-full blur-[5rem] opacity-30 md:block" />
-      <div className={`${aviano.className} text-3xl md:text-6xl txt-gradient w-full text-center txt txt-rotate `}>
+      <div
+        className={`${aviano.className} text-3xl md:text-6xl txt-gradient w-full text-center txt txt-rotate `}
+      >
         ETHEREUM
       </div>
-      <div className={`${aviano.className}  text-3xl md:text-6xl  txt-gradient-2 w-full text-center  `}>
+      <div
+        className={`${aviano.className}  text-3xl md:text-6xl  txt-gradient-2 w-full text-center  `}
+      >
         WRAPPED
       </div>
 
@@ -41,7 +45,6 @@ export default function Home() {
           Wrap on Farcaster 🔥
         </button>
       </Link>
-
-    </div >
+    </div>
   );
 }
