@@ -9,13 +9,13 @@ export const metadata: Metadata = {
   description: "Built by @XDev",
   openGraph: {
     images: [
-      "https://ipfs.filebase.io/ipfs/QmVjHnwfLfKEiFQBHygV1aaocDhDktyTebNmPQt1sE3gC5",
+      "https://opengraph.b-cdn.net/production/documents/95546111-21b8-4ee5-a228-7093cec6e7b3.png?token=wi3Kf7Qfb__3otpmdX5gF1C5Z0FBpKPsOfA6-3Vbed4&height=487&width=1200&expires=33243713089",
     ],
   },
   other: {
     "fc:frame": "vNext",
     "fc:frame:image":
-      "https://ipfs.filebase.io/ipfs/QmVjHnwfLfKEiFQBHygV1aaocDhDktyTebNmPQt1sE3gC5",
+      "https://opengraph.b-cdn.net/production/documents/95546111-21b8-4ee5-a228-7093cec6e7b3.png?token=wi3Kf7Qfb__3otpmdX5gF1C5Z0FBpKPsOfA6-3Vbed4&height=487&width=1200&expires=33243713089",
     "fc:frame:input:text": "ENS or Lens or Address",
     "fc:frame:button:1": "Wrap",
     "fc:frame:post_url": `${process.env.NEXT_PUBLIC_BASE_URL}/api/refresh`,
