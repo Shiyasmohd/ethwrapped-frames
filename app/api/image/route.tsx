@@ -1,8 +1,6 @@
 import { ImageResponse } from "next/og";
 export const runtime = "edge";
 export const dynamic = "force-dynamic";
-import Logo from "../../../public/logo.png";
-import { GraphQLClient, gql } from "graphql-request";
 import { getTotalPoapCount } from "@/lib/subgraph-functions/poap";
 import {
   getAddrFromEns,
@@ -61,9 +59,6 @@ export async function GET(req: NextRequest) {
   console.log(txns.length, "transactions fetched");
   const txnProcessedData = processTransactions(addr, txns);
   console.log("Processed Transaction Data: ", txnProcessedData);
-
-
-
 
   if (1) {
     const VALUE_CSS = {

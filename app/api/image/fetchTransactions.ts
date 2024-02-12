@@ -1,5 +1,4 @@
 import { Transaction } from "@/lib/types/types";
-import axios from "axios";
 import { ethers } from "ethers";
 
 export const getTransactions = async (

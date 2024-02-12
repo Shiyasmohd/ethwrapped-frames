@@ -1,5 +1,4 @@
 import { Transaction } from "@/lib/types/types";
-import { ethers } from "ethers";
 
 export const processTransactions = (
   address: string,

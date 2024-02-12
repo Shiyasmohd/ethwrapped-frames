@@ -11,10 +11,10 @@ export async function POST(req: Request) {
         <!DOCTYPE html>
         <html>
         <head>
-            <title>ETH Wrapped | Farcaster Frames Edition</title>
+            <title>ETH Wrapped</title>
             <meta property="og:title" content="ETH Wrapped">
             <meta property="og:image" content="${imageURL}">
-            <meta name="fc:frame" content="ETH Wrapped">
+            <meta name="fc:frame" content="vNext">
             <meta name="fc:frame:image" content="${imageURL}">
            
         </head>
