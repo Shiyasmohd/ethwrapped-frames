@@ -1,3 +1,5 @@
+import { headers } from "next/headers";
+
 export const dynamic = "force-dynamic";
 
 export async function POST(req: Request) {
@@ -5,6 +7,7 @@ export async function POST(req: Request) {
     untrustedData: { inputText, fid },
     trustedData: { messageBytes },
   } = await req.json();
+  const headersList = headers();
   const imageURL = `${process.env.NEXT_PUBLIC_BASE_URL}/api/image?address=${inputText}`;
   return new Response(
     `

@@ -16,6 +16,7 @@ import {
   getHeyPosts,
 } from "@/lib/subgraph-functions/lens";
 import { NextRequest } from "next/server";
+import { headers } from "next/headers";
 
 const noCacheFetch = async (url: string, options: RequestInit) =>
   fetch(url, options);
@@ -24,6 +25,7 @@ export async function GET(req: NextRequest) {
   const searchParams = req.nextUrl.searchParams;
   const inputText = searchParams.get("address") ?? "";
   const etherscanApiKey = process.env.ETHERSCAN_API_KEY!;
+  const headersList = headers();
 
   let addr = "";
 
