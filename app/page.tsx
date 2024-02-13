@@ -18,7 +18,9 @@ export const metadata: Metadata = {
       "https://opengraph.b-cdn.net/production/documents/95546111-21b8-4ee5-a228-7093cec6e7b3.png?token=wi3Kf7Qfb__3otpmdX5gF1C5Z0FBpKPsOfA6-3Vbed4&height=487&width=1200&expires=33243713089",
     "fc:frame:input:text": "ENS or Lens or Address",
     "fc:frame:button:1": "Wrap",
-    "fc:frame:post_url": `${process.env.NEXT_PUBLIC_BASE_URL}/api/wrap`,
+    "fc:frame:post_url": `${
+      process.env.NEXT_PUBLIC_BASE_URL
+    }/api/wrap?timestamp=${new Date().getTime()}`,
   },
 };
 
